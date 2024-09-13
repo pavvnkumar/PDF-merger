@@ -1,0 +1,31 @@
+nav{
+    background-image: url(bc.jpg);
+ }
+ .container{
+     justify-content: center;
+   align-items: center;
+   align-content: center;
+   position: relative;
+   display: grid;
+   padding: 22vh 0;
+   background-image: url('black-white-background.jpg');
+   background-size: cover;
+ }
+ .form-group{
+     justify-content: center;
+   align-items: center;
+   align-content: center;
+   display: grid;
+   color: darkblue;
+ }
+ /* .navbar-nav{
+   padding: 0 32vw; 
+ }*/
+ .nav-item{
+   padding: 0 8vw;
+ }
+ .container h1{
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   justify-content: center;
+   display: flex;
+ }
