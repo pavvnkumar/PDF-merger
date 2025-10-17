@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back Online Countdown</title>
+    <style>
+        /* CSS for full black background and glowing white text */
+        body {
+            background-color: black; /* Full black background */
+            color: white; /* White text */
+            font-family: Arial, sans-serif;
+            display: flex; /* Center content */
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margins */
+            text-align: center; /* Center text */
+        }
+
+        h1 {
+            font-size: 2.5em; /* Larger text for "Back online in" */
+            text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white; /* Glowing effect */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        #timer {
+            font-size: 1.5em; /* Size for countdown elements */
+        }
+
+        #timer span {
+            text-shadow: 0 0 10px white, 0 0 20px white; /* Glowing effect on countdown numbers */
+            margin: 0 10px; /* Space between countdown elements */
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">
+        <h1>Back online in</h1>
+        <div id="timer">
+            <span id="days">00</span> days 
+            <span id="hours">00</span> hours 
+            <span id="minutes">00</span> minutes 
+            <span id="seconds">00</span> seconds
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for the countdown timer
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+
+        // Calculate the end date: 30 days from now (1 month approximation)
+        const now = new Date();
+        const endDate = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days in milliseconds
+
+        function updateCountdown() {
+            const now = new Date();
+            const difference = endDate - now; // Time difference in milliseconds
+
+            if (difference > 0) {
+                const seconds = Math.floor((difference / 1000) % 60); // Calculate seconds
+                const minutes = Math.floor((difference / (1000 * 60)) % 60); // Calculate minutes
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24); // Calculate hours
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24)); // Calculate days
+
+                // Update the HTML elements with leading zeros
+                daysEl.textContent = String(days).padStart(2, '0');
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            } else {
+                // Countdown has finished
+                daysEl.textContent = '00';
+                hoursEl.textContent = '00';
+                minutesEl.textContent = '00';
+                secondsEl.textContent = '00';
+                clearInterval(intervalId); // Stop the timer
+            }
+        }
+
+        // Initial call to display the countdown immediately
+        updateCountdown();
+
+        // Update the countdown every second
+        const intervalId = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
